@@ -16,15 +16,11 @@ async def pushing():
 async def pulling():
     client = ctx.socket(zmq.PULL)
     client.connect('tcp://127.0.0.1:9000')
-    poller = zmq.asyncio.Poller()
-    poller.register(client, zmq.POLLIN)
     with open(os.devnull, 'w') as null:
         while True:
-            events = await poller.poll()
-            if client in dict(events):
-                greeting = await client.recv_multipart()
-                if greeting[0] == b'exit': break
-                print(greeting[0], file=null)
+            greeting = await client.recv_multipart()
+            if greeting[0] == b'exit': break
+            print(greeting[0], file=null)
 
 def main():
     loop = asyncio.get_event_loop()
