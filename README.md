@@ -9,3 +9,15 @@ uvloop + aiozmq: 0.182694 sec.
 zmqloop + pyzmq: 0.704048 sec.
 tornado + pyzmq: 1.093527 sec.
 ```
+
+Another setup with Python 3.6.0rc1, Tornado 4.4.2, uvloop 0.6.7, PyZMQ 16.0.2, aiozmq 0.7.1 on macOS 10.12 (64bit) results in:
+
+```
+asyncio + aiozmq: 0.256548 sec.
+tornado + aiozmq: 0.356422 sec.
+uvloop + aiozmq: 0.186459 sec.
+zmqloop + pyzmq: 0.209287 sec.
+tornado + pyzmq: 0.207432 sec.
+```
+
+Note that Python 3.6 has replaced asyncio's Future and Task implementations with equivalent C modules.
